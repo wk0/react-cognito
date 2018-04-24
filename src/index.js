@@ -1,51 +1,52 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './AppContainer'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
-import reducers from './reducers'
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
 
-import sagas from './sagas'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { blue800, amber50 } from 'material-ui/styles/colors';
 
-import { blue800, amber50 } from 'material-ui/styles/colors'
+import App from './AppContainer';
+import './index.css';
+import reducers from './reducers';
+import sagas from './sagas';
+
 
 const muiTheme = getMuiTheme({
   palette: {
-    accent1Color: amber50
+    accent1Color: amber50,
   },
   tabs: {
-    backgroundColor: blue800
-  }
-})
+    backgroundColor: blue800,
+  },
+});
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
-let composeEnhancers = compose
+let composeEnhancers = compose;
 
 if (process.env.NODE_ENV === 'development') {
   const composeWithDevToolsExtension =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
   if (typeof composeWithDevToolsExtension === 'function') {
-    composeEnhancers = composeWithDevToolsExtension
+    composeEnhancers = composeWithDevToolsExtension;
   }
 }
 
 const store = createStore(
   reducers,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
-)
+  composeEnhancers(applyMiddleware(sagaMiddleware)),
+);
 
-sagaMiddleware.run(sagas)
+sagaMiddleware.run(sagas);
 
-injectTapEventPlugin()
+injectTapEventPlugin();
 
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>
@@ -53,5 +54,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </MuiThemeProvider>,
-  document.getElementById('root')
-)
+  document.getElementById('root'),
+);

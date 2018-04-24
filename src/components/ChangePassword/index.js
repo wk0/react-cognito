@@ -1,3 +1,3 @@
-import ChangePassword from './ChangePasswordContainer'
+import ChangePassword from './ChangePasswordContainer';
 
-export default ChangePassword
+export default ChangePassword;

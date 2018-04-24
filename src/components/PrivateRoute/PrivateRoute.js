@@ -1,29 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Route from 'react-router-dom/Route'
-import Redirect from 'react-router-dom/Redirect'
-import { state } from 'aws-cognito-redux-saga'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Route from 'react-router-dom/Route';
+import Redirect from 'react-router-dom/Redirect';
+import { state } from 'aws-cognito-redux-saga';
 
-class PrivateRoute extends React.Component {
-  static propTypes = {
-    auth: PropTypes.object
-  }
+const PrivateRoute = ({ auth }) => (
+  <Route
+    render={() => (auth.isSignedIn !== state.AUTH_FAIL ? (
+      <this.props.component />
+      ) : (
+        <Redirect to="/landing" />
+      ))}
+  />
+);
 
-  render() {
-    let { auth } = this.props
+PrivateRoute.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
 
-    return (
-      <Route
-        render={() => {
-          return auth.isSignedIn !== state.AUTH_FAIL ? (
-            <this.props.component />
-          ) : (
-            <Redirect to="/landing" />
-          )
-        }}
-      />
-    )
-  }
-}
-
-export default PrivateRoute
+export default PrivateRoute;

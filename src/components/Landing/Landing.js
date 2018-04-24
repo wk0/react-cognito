@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-export const LandingComponent = () => {
+const LandingComponent = () => {
   const style = {
     page: {},
     layout: {},
     heading: {
       textAlign: 'center',
       fontSize: '48px',
-      margin: '64px'
-    }
-  }
+      margin: '64px',
+    },
+  };
 
   return (
     <div style={style.page}>
@@ -17,5 +17,7 @@ export const LandingComponent = () => {
         <div style={style.heading}>Landing Page</div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default LandingComponent;

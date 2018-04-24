@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Field, reduxForm } from 'redux-form'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
 
-import { TextField } from 'redux-form-material-ui'
+import { TextField } from 'redux-form-material-ui';
 
-import { RaisedButton, Paper } from 'material-ui'
+import { RaisedButton, Paper } from 'material-ui';
 
-const required = value => (value ? undefined : 'Required')
+const required = value => (value ? undefined : 'Required');
 
 const style = {
   paper: { padding: '16px' },
@@ -15,31 +15,31 @@ const style = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 'calc(100vh - 56px)'
+    height: 'calc(100vh - 56px)',
   },
   title: {
     fontSize: '32px',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   form: {
     width: '320px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   button: {
     width: '80%',
-    margin: '24px 0'
+    margin: '24px 0',
   },
   error: {
     margin: '8px',
     color: 'rgb(200,0,0)',
     minHeight: '48px',
     width: '80%',
-    fontSize: '15px'
-  }
-}
+    fontSize: '15px',
+  },
+};
 
 class ResetPassword extends Component {
   static propTypes = {
@@ -47,23 +47,23 @@ class ResetPassword extends Component {
     forgotPassword: PropTypes.func.isRequired,
     auth: PropTypes.object,
     init: PropTypes.func,
-    history: PropTypes.object
+    history: PropTypes.object,
   }
 
   componentWillMount() {
-    this.props.init()
+    this.props.init();
   }
 
-  forgotPassword = values => {
-    this.props.forgotPassword(values.email.toLowerCase())
+  forgotPassword = (values) => {
+    this.props.forgotPassword(values.email.toLowerCase());
   }
 
   changePassword = () => {
-    this.props.history.push('/changePassword')
+    this.props.history.push('/changePassword');
   }
 
   render() {
-    const { handleSubmit, auth } = this.props
+    const { handleSubmit, auth } = this.props;
     return (
       <div style={style.layout}>
         <Paper style={style.paper} zDepth={5}>
@@ -101,11 +101,11 @@ class ResetPassword extends Component {
           </form>
         </Paper>
       </div>
-    )
+    );
   }
 }
 
 // Decorate the form component
 export default reduxForm({
-  form: 'resetPassword'
-})(ResetPassword)
+  form: 'resetPassword',
+})(ResetPassword);

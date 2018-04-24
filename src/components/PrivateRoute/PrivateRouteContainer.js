@@ -1,17 +1,11 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import PrivateRouteComponent from './PrivateRoute'
+import PrivateRouteComponent from './PrivateRoute';
 
-const mapStatetoProps = state => {
-  return {
-    auth: state.auth
-  }
-}
+const mapStatetoProps = state => ({
+  auth: state.auth,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
+const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStatetoProps, mapDispatchToProps)(
-  PrivateRouteComponent
-)
+export default connect(mapStatetoProps, mapDispatchToProps)(PrivateRouteComponent);

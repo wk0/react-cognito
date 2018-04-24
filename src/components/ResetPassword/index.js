@@ -1,3 +1,3 @@
-import ResetPassword from './ResetPasswordContainer'
+import ResetPassword from './ResetPasswordContainer';
 
-export default ResetPassword
+export default ResetPassword;

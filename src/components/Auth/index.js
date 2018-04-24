@@ -1,3 +1,3 @@
-import Auth from './AuthContainer'
+import Auth from './AuthContainer';
 
-export default Auth
+export default Auth;

@@ -1,40 +1,39 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { state } from 'aws-cognito-redux-saga'
+import { state } from 'aws-cognito-redux-saga';
 
 const style = {
   page: {},
   layout: {
     display: 'flex',
     flexFlow: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   heading: {
     textAlign: 'center',
     fontSize: '48px',
-    margin: '64px'
+    margin: '64px',
   },
   label: {
     fontSize: '24px',
     margin: '8px 0',
-    color: 'rgb(0,64,128)'
+    color: 'rgb(0,64,128)',
   },
   token: {
     overflow: 'auto',
     overflowWrap: 'break-word',
     fontSize: '16px',
-    width: '90vw'
-  }
-}
+    width: '90vw',
+  },
+};
 
-export class ProtectedComponent extends React.Component {
+class ProtectedComponent extends React.Component {
   static propTypes = {
-    isSignedIn: PropTypes.string,
-    auth: PropTypes.object
+    auth: PropTypes.object,
   }
 
-  renderAuthInfo(auth) {
+  static renderAuthInfo(auth) {
     return (
       <div style={style.token}>
         <div style={style.label}>Access Token</div>
@@ -44,11 +43,11 @@ export class ProtectedComponent extends React.Component {
         <div style={style.label}>Refresh Token</div>
         <div>{auth.info.refreshToken.token}</div>
       </div>
-    )
+    );
   }
 
   render() {
-    const { auth } = this.props
+    const { auth } = this.props;
 
     return (
       <div style={style.page}>
@@ -60,6 +59,8 @@ export class ProtectedComponent extends React.Component {
             : null}
         </div>
       </div>
-    )
+    );
   }
 }
+
+export default ProtectedComponent;

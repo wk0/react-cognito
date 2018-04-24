@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Field, reduxForm } from 'redux-form'
-import validator from 'validator'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
+import validator from 'validator';
 
-import { TextField } from 'redux-form-material-ui'
+import { TextField } from 'redux-form-material-ui';
 
-import { FlatButton, RaisedButton, Paper } from 'material-ui'
+import { FlatButton, RaisedButton, Paper } from 'material-ui';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import { state } from 'aws-cognito-redux-saga'
+import { state } from 'aws-cognito-redux-saga';
 
-const required = value => (value ? undefined : 'Required')
+const required = value => (value ? undefined : 'Required');
 const email = value =>
-  validator.isEmail(value) ? undefined : 'Not Valid Email'
+  (validator.isEmail(value) ? undefined : 'Not Valid Email');
 
 const style = {
   paper: {
-    padding: '16px'
+    padding: '16px',
   },
   layout: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 'calc(100vh - 56px)'
+    height: 'calc(100vh - 56px)',
   },
   title: {
     fontSize: '32px',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   form: {
     width: '320px',
@@ -36,26 +36,26 @@ const style = {
     flexFlow: 'column',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   signup: {
     fontSize: '14px',
-    marginBottom: '16px'
+    marginBottom: '16px',
   },
   signInButton: {
     marginBottom: '16px',
-    width: '80%'
+    width: '80%',
   },
   button: {
-    margin: '8px 0'
+    margin: '8px 0',
   },
   error: {
     width: '80%',
     margin: '8px',
     color: 'rgb(200,0,0)',
-    height: '32px'
-  }
-}
+    height: '32px',
+  },
+};
 
 class SignIn extends Component {
   static propTypes = {
@@ -63,39 +63,39 @@ class SignIn extends Component {
     signIn: PropTypes.func.isRequired,
     auth: PropTypes.object,
     init: PropTypes.func,
-    history: PropTypes.object
+    history: PropTypes.object,
   }
 
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.passwordReset = this.passwordReset.bind(this)
+    this.passwordReset = this.passwordReset.bind(this);
   }
 
   componentWillMount() {
-    this.props.init()
-  }
-
-  signIn = values => {
-    if (this.props.auth.isConfirmed === state.AUTH_SUCCESS) {
-      this.props.signIn(values.email, values.password)
-    } else {
-      this.props.signIn(values.email, values.password, values.code)
-    }
+    this.props.init();
   }
 
   componentDidUpdate() {
     if (this.props.auth.isSignedIn === state.AUTH_SUCCESS) {
-      this.props.history.push('/protected')
+      this.props.history.push('/protected');
+    }
+  }
+
+  signIn = (values) => {
+    if (this.props.auth.isConfirmed === state.AUTH_SUCCESS) {
+      this.props.signIn(values.email, values.password);
+    } else {
+      this.props.signIn(values.email, values.password, values.code);
     }
   }
 
   passwordReset() {
-    this.props.history.push('/forcechangepassword')
+    this.props.history.push('/forcechangepassword');
   }
 
   renderPasswordReset() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
 
     return (
       <div style={style.layout}>
@@ -113,11 +113,11 @@ class SignIn extends Component {
           </form>
         </Paper>
       </div>
-    )
+    );
   }
 
   renderSignIn() {
-    const { handleSubmit, auth } = this.props
+    const { handleSubmit, auth } = this.props;
     return (
       <div style={style.layout}>
         <Paper style={style.paper} zDepth={5}>
@@ -179,20 +179,19 @@ class SignIn extends Component {
           </form>
         </Paper>
       </div>
-    )
+    );
   }
 
   render() {
-    const { auth } = this.props
+    const { auth } = this.props;
     if (auth.passwordResetRequired === state.AUTH_SUCCESS) {
-      return this.renderPasswordReset()
-    } else {
-      return this.renderSignIn()
+      return this.renderPasswordReset();
     }
+    return this.renderSignIn();
   }
 }
 
 // Decorate the form component
 export default reduxForm({
-  form: 'signIn'
-})(SignIn)
+  form: 'signIn',
+})(SignIn);

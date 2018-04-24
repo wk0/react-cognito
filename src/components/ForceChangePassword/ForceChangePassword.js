@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Field, reduxForm } from 'redux-form'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
 
-import { TextField } from 'redux-form-material-ui'
+import { TextField } from 'redux-form-material-ui';
 
-import { RaisedButton, Paper } from 'material-ui'
+import { RaisedButton, Paper } from 'material-ui';
 
-import { state } from 'aws-cognito-redux-saga'
+import { state } from 'aws-cognito-redux-saga';
 
-import validator from 'validator'
+import validator from 'validator';
 
-const required = value => (value ? undefined : 'Required')
+const required = value => (value ? undefined : 'Required');
 const passwordMatch = (value, values) =>
-  values.password !== values.passwordMatch && 'Passwords must match'
-const minLength = value => (value.length >= 8 ? undefined : 'Min Length 8')
+  values.password !== values.passwordMatch && 'Passwords must match';
+const minLength = value => (value.length >= 8 ? undefined : 'Min Length 8');
 const email = value =>
-  validator.isEmail(value) ? undefined : 'Not Valid Email'
+  (validator.isEmail(value) ? undefined : 'Not Valid Email');
 
 const style = {
   paper: { padding: '16px' },
@@ -24,32 +24,32 @@ const style = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 'calc(100vh - 56px)'
+    height: 'calc(100vh - 56px)',
   },
   title: {
     fontSize: '32px',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   button: {
     margin: '16px',
-    width: '80%'
+    width: '80%',
   },
   field: {
-    margin: '8px 32px'
+    margin: '8px 32px',
   },
   error: {
     width: '80%',
     color: 'rgb(200,0,0)',
     margin: '8px',
-    height: '32px'
-  }
-}
+    height: '32px',
+  },
+};
 
 class ForceChangePassword extends Component {
   static propTypes = {
@@ -57,23 +57,23 @@ class ForceChangePassword extends Component {
     handleSubmit: PropTypes.func.isRequired,
     completeNewPassword: PropTypes.func.isRequired,
     auth: PropTypes.object,
-    init: PropTypes.func
+    init: PropTypes.func,
   }
 
   componentWillMount() {
-    this.props.init()
+    this.props.init();
   }
 
-  changePassword = values => {
-    this.props.completeNewPassword(values.email.toLowerCase(), values.password)
+  changePassword = (values) => {
+    this.props.completeNewPassword(values.email.toLowerCase(), values.password);
   }
 
   signIn = () => {
-    this.props.history.push('/signin')
+    this.props.history.push('/signin');
   }
 
   renderChangePassword() {
-    const { handleSubmit, auth } = this.props
+    const { handleSubmit, auth } = this.props;
     return (
       <div style={style.layout}>
         <Paper style={style.paper} zDepth={5}>
@@ -119,11 +119,11 @@ class ForceChangePassword extends Component {
           </form>
         </Paper>
       </div>
-    )
+    );
   }
 
   renderSignIn() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
     return (
       <div style={style.layout}>
         <Paper style={style.paper} zDepth={5}>
@@ -140,18 +140,18 @@ class ForceChangePassword extends Component {
           </form>
         </Paper>
       </div>
-    )
+    );
   }
 
   render() {
-    const { auth } = this.props
+    const { auth } = this.props;
     return auth.hasChangedPassword === state.AUTH_SUCCESS
       ? this.renderSignIn()
-      : this.renderChangePassword()
+      : this.renderChangePassword();
   }
 }
 
 // Decorate the form component
 export default reduxForm({
-  form: 'forceChangePassword'
-})(ForceChangePassword)
+  form: 'forceChangePassword',
+})(ForceChangePassword);

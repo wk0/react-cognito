@@ -1,6 +1,6 @@
 {
   "name": "react-cognito",
-  "version": "0.1",
+  "version": "1.0.0",
   "description": "Starter pack for react projects using AWS Cognito for authentication",
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "dependencies": {
     "aws-cognito-redux-saga": "^1.5.7",
     "material-ui": "^0.20.0",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.5",
@@ -33,9 +34,26 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "lint": "eslint . --ext .js --ext .jsx; exit 0",
+    "lint-fix": "eslint . --ext .js --ext .jsx --fix",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "server": "http-server build"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "jsdom"
   }
 }

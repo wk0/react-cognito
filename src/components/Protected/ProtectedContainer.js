@@ -1,14 +1,10 @@
-import { connect } from 'react-redux'
-import { ProtectedComponent } from './Protected'
+import { connect } from 'react-redux';
+import ProtectedComponent from './Protected';
 
-const mapStatetoProps = state => {
-  return {
-    auth: state.auth
-  }
-}
+const mapStatetoProps = state => ({
+  auth: state.auth,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
+const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStatetoProps, mapDispatchToProps)(ProtectedComponent)
+export default connect(mapStatetoProps, mapDispatchToProps)(ProtectedComponent);

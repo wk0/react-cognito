@@ -1,3 +1,3 @@
-import SignIn from './SignInContainer'
+import SignIn from './SignInContainer';
 
-export default SignIn
+export default SignIn;

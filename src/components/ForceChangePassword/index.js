@@ -1,3 +1,3 @@
-import ForceChangePassword from './ForceChangePasswordContainer'
+import ForceChangePassword from './ForceChangePasswordContainer';
 
-export default ForceChangePassword
+export default ForceChangePassword;

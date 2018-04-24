@@ -1,16 +1,12 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import AppComponent from './App'
+import AppComponent from './App';
 
-const mapStatetoProps = state => {
-  return {
-    isSignedIn: state.auth.isSignedIn,
-    auth: state.auth
-  }
-}
+const mapStatetoProps = state => ({
+  isSignedIn: state.auth.isSignedIn,
+  auth: state.auth,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
+const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStatetoProps, mapDispatchToProps)(AppComponent)
+export default connect(mapStatetoProps, mapDispatchToProps)(AppComponent);

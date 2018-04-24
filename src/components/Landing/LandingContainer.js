@@ -1,12 +1,9 @@
-import { connect } from 'react-redux'
-import { LandingComponent } from './Landing'
+import { connect } from 'react-redux';
 
-const mapStatetoProps = state => {
-  return {}
-}
+import LandingComponent from './Landing';
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
+const mapStatetoProps = state => ({});
 
-export default connect(mapStatetoProps, mapDispatchToProps)(LandingComponent)
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStatetoProps, mapDispatchToProps)(LandingComponent);

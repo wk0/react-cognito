@@ -1,81 +1,80 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Field, reduxForm } from 'redux-form'
-import validator from 'validator'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
+import validator from 'validator';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import { TextField } from 'redux-form-material-ui'
+import { TextField } from 'redux-form-material-ui';
 
-import { RaisedButton, Paper } from 'material-ui'
+import { RaisedButton, Paper } from 'material-ui';
 
-import { state } from 'aws-cognito-redux-saga'
+import { state } from 'aws-cognito-redux-saga';
 
-const required = value => (value ? undefined : 'Required')
+const required = value => (value ? undefined : 'Required');
 const email = value =>
-  validator.isEmail(value) ? undefined : 'Not Valid Email'
+  (validator.isEmail(value) ? undefined : 'Not Valid Email');
 const passwordMatch = (value, values) =>
-  values.password !== values.passwordMatch && 'Passwords must match'
-const minLength = value => (value.length >= 8 ? undefined : 'Min Length 8')
+  values.password !== values.passwordMatch && 'Passwords must match';
+const minLength = value => (value.length >= 8 ? undefined : 'Min Length 8');
 
 const style = {
   paper: {
-    padding: '16px'
+    padding: '16px',
   },
   layout: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 'calc(100vh - 56px)'
+    height: 'calc(100vh - 56px)',
   },
   title: {
     fontSize: '32px',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   signUpButton: {
     margin: '32px',
-    width: '80%'
+    width: '80%',
   },
   field: {
-    margin: '8px 32px'
+    margin: '8px 32px',
   },
   error: {
     margin: '8px',
-    color: 'rgb(200,0,0)'
+    color: 'rgb(200,0,0)',
   },
   validateTitle: {
     margin: '8px 32px',
     fontSize: '24px',
-    textAlign: 'center'
-  }
-}
+    textAlign: 'center',
+  },
+};
 
 class SignUp extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     signUp: PropTypes.func.isRequired,
     auth: PropTypes.object,
-    init: PropTypes.func
+    init: PropTypes.func,
   }
 
   componentWillMount() {
-    this.props.init()
+    this.props.init();
   }
 
-  signUp = values => {
-    this.props.signUp(values.email.toLowerCase(), values.password)
+  signUp = (values) => {
+    this.props.signUp(values.email.toLowerCase(), values.password);
   }
 
   signUpForm = () => {
-    const { handleSubmit, auth } = this.props
+    const { handleSubmit, auth } = this.props;
     return (
       <div style={style.layout}>
         <Paper style={style.paper} zDepth={5}>
@@ -121,33 +120,31 @@ class SignUp extends Component {
           </form>
         </Paper>
       </div>
-    )
+    );
   }
 
-  signedUp = () => {
-    return (
-      <div style={style.layout}>
-        <Paper style={style.paper} zDepth={5}>
-          <div style={style.form}>
-            <div style={style.validateTitle}>
+  signedUp = () => (
+    <div style={style.layout}>
+      <Paper style={style.paper} zDepth={5}>
+        <div style={style.form}>
+          <div style={style.validateTitle}>
               A verification code has been emailed
-            </div>
-
-            <RaisedButton
-              style={style.signUpButton}
-              containerElement={<Link to="/signin" />}
-              primary
-            >
-              Sign In
-            </RaisedButton>
           </div>
-        </Paper>
-      </div>
-    )
-  }
+
+          <RaisedButton
+            style={style.signUpButton}
+            containerElement={<Link to="/signin" />}
+            primary
+          >
+              Sign In
+          </RaisedButton>
+        </div>
+      </Paper>
+    </div>
+  )
 
   render() {
-    const { auth } = this.props
+    const { auth } = this.props;
 
     return (
       <div style={style.layout}>
@@ -155,11 +152,11 @@ class SignUp extends Component {
           ? this.signUpForm()
           : this.signedUp()}
       </div>
-    )
+    );
   }
 }
 
 // Decorate the form component
 export default reduxForm({
-  form: 'signUp'
-})(SignUp)
+  form: 'signUp',
+})(SignUp);

@@ -1,3 +1,3 @@
-import Protected from './ProtectedContainer'
+import Protected from './ProtectedContainer';
 
-export default Protected
+export default Protected;
