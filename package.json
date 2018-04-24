@@ -1,10 +1,10 @@
 {
-  "name": "aws-cognito-react",
-  "version": "1.8.3",
-  "description": "aws-cognito-react primary goal is to provide user management services for a web App in a scalable serverless way.",
+  "name": "react-cognito",
+  "version": "0.1",
+  "description": "Starter pack for react projects using AWS Cognito for authentication",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dbroadhurst/aws-cognito-react"
+    "url": "https://github.com/wk0/react-cognito"
   },
   "keywords": [
     "aws",
@@ -15,9 +15,7 @@
     "redux",
     "saga"
   ],
-  "author": "David Broadhurst",
-  "homepage": "http://cognito.dbroadhurst.net",
-  "license": "MIT",
+  "author": "Will Kelly",
   "dependencies": {
     "aws-cognito-redux-saga": "^1.5.7",
     "material-ui": "^0.20.0",
