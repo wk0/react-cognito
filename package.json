@@ -37,7 +37,7 @@
     "lint": "eslint . --ext .js --ext .jsx; exit 0",
     "lint-fix": "eslint . --ext .js --ext .jsx --fix",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject",
     "server": "http-server build"
   },
@@ -45,15 +45,26 @@
     "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "enzyme": "^3.3.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.3"
+    "jest": "^22.4.3",
+    "react-test-renderer": "^16.3.2"
   },
   "jest": {
     "verbose": true,
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
+  "babel": {
+    "presets": ["env", "react"]
   }
 }

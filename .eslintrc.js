@@ -11,6 +11,9 @@ module.exports = {
     "react/forbid-prop-types": 0, // does not work with existig auth structure
     "react/jsx-filename-extension": 0,
     "react/require-default-props": 0,
+    "react/prefer-stateless-function": 0,
+    "class-methods-use-this": 0,
+    "jsx-a11y/href-no-hash": "off", // Bugged with "eslint-plugin-jsx-a11y": "^6.0.3",
   },
   "parser": "babel-eslint",
   "plugins": [

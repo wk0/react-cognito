@@ -16,7 +16,7 @@ import Header from './components/Header';
 import Auth from './components/Auth';
 import PrivateRoute from './components/PrivateRoute';
 
-const App = ({ auth }) => (
+const App = props => (
 
   <Router>
     <div className="app">
@@ -38,7 +38,7 @@ const App = ({ auth }) => (
           <Route
             path="/"
             render={() => {
-              if (auth.isSignedIn === state.AUTH_SUCCESS) {
+              if (props.auth.isSignedIn === state.AUTH_SUCCESS) {
                 return <Redirect to="/protected" />;
               }
               return <Redirect to="/landing" />;

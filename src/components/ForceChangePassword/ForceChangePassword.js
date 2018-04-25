@@ -52,23 +52,15 @@ const style = {
 };
 
 class ForceChangePassword extends Component {
-  static propTypes = {
-    history: PropTypes.object,
-    handleSubmit: PropTypes.func.isRequired,
-    completeNewPassword: PropTypes.func.isRequired,
-    auth: PropTypes.object,
-    init: PropTypes.func,
-  }
-
   componentWillMount() {
     this.props.init();
   }
 
-  changePassword = (values) => {
+  changePassword(values) {
     this.props.completeNewPassword(values.email.toLowerCase(), values.password);
   }
 
-  signIn = () => {
+  signIn() {
     this.props.history.push('/signin');
   }
 
@@ -150,6 +142,14 @@ class ForceChangePassword extends Component {
       : this.renderChangePassword();
   }
 }
+
+ForceChangePassword.propTypes = {
+  history: PropTypes.object,
+  handleSubmit: PropTypes.func.isRequired,
+  completeNewPassword: PropTypes.func.isRequired,
+  auth: PropTypes.object,
+  init: PropTypes.func,
+};
 
 // Decorate the form component
 export default reduxForm({

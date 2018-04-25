@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { config } from 'aws-cognito-redux-saga';
 
 class Auth extends React.Component {
-  static propTypes = {
-    getUser: PropTypes.func.isRequired,
-  }
-
   componentWillMount() {
     config.config.set({
       region: 'us-east-1',
@@ -23,5 +19,9 @@ class Auth extends React.Component {
     return null;
   }
 }
+
+Auth.propTypes = {
+  getUser: PropTypes.func.isRequired,
+};
 
 export default Auth;

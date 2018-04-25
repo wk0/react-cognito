@@ -52,19 +52,11 @@ const style = {
 };
 
 class ChangePassword extends Component {
-  static propTypes = {
-    history: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    changePassword: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    init: PropTypes.func.isRequired,
-  }
-
   componentWillMount() {
     this.props.init();
   }
 
-  changePassword = (values) => {
+  changePassword(values) {
     this.props.changePassword(
       values.email.toLowerCase(),
       values.code,
@@ -72,7 +64,7 @@ class ChangePassword extends Component {
     );
   }
 
-  signIn = () => {
+  signIn() {
     this.props.history.push('/signin');
   }
 
@@ -163,6 +155,15 @@ class ChangePassword extends Component {
       : this.renderChangePassword();
   }
 }
+
+ChangePassword.propTypes = {
+  history: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  changePassword: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  init: PropTypes.func.isRequired,
+};
+
 
 // Decorate the form component
 export default reduxForm({

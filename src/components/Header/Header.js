@@ -10,12 +10,7 @@ import { Link } from 'react-router-dom';
 import { state } from 'aws-cognito-redux-saga';
 
 export default class HeaderComponent extends React.Component {
-  static propTypes = {
-    signOut: PropTypes.func,
-    auth: PropTypes.object,
-  }
-
-  signOut = () => {
+  signOut() {
     this.props.signOut();
   }
 
@@ -58,3 +53,8 @@ export default class HeaderComponent extends React.Component {
     );
   }
 }
+
+HeaderComponent.propTypes = {
+  signOut: PropTypes.func,
+  auth: PropTypes.object,
+};

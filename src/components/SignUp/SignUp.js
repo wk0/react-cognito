@@ -58,22 +58,15 @@ const style = {
 };
 
 class SignUp extends Component {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    signUp: PropTypes.func.isRequired,
-    auth: PropTypes.object,
-    init: PropTypes.func,
-  }
-
   componentWillMount() {
     this.props.init();
   }
 
-  signUp = (values) => {
+  signUp(values) {
     this.props.signUp(values.email.toLowerCase(), values.password);
   }
 
-  signUpForm = () => {
+  signUpForm() {
     const { handleSubmit, auth } = this.props;
     return (
       <div style={style.layout}>
@@ -123,25 +116,27 @@ class SignUp extends Component {
     );
   }
 
-  signedUp = () => (
-    <div style={style.layout}>
-      <Paper style={style.paper} zDepth={5}>
-        <div style={style.form}>
-          <div style={style.validateTitle}>
-              A verification code has been emailed
-          </div>
+  signedUp() {
+    return (
+      <div style={style.layout}>
+        <Paper style={style.paper} zDepth={5}>
+          <div style={style.form}>
+            <div style={style.validateTitle}>
+                A verification code has been emailed
+            </div>
 
-          <RaisedButton
-            style={style.signUpButton}
-            containerElement={<Link to="/signin" />}
-            primary
-          >
-              Sign In
-          </RaisedButton>
-        </div>
-      </Paper>
-    </div>
-  )
+            <RaisedButton
+              style={style.signUpButton}
+              containerElement={<Link to="/signin" />}
+              primary
+            >
+                Sign In
+            </RaisedButton>
+          </div>
+        </Paper>
+      </div>
+    );
+  }
 
   render() {
     const { auth } = this.props;
@@ -155,6 +150,14 @@ class SignUp extends Component {
     );
   }
 }
+
+SignUp.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired,
+  auth: PropTypes.object,
+  init: PropTypes.func,
+};
+
 
 // Decorate the form component
 export default reduxForm({

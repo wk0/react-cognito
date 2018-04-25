@@ -42,23 +42,15 @@ const style = {
 };
 
 class ResetPassword extends Component {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    forgotPassword: PropTypes.func.isRequired,
-    auth: PropTypes.object,
-    init: PropTypes.func,
-    history: PropTypes.object,
-  }
-
   componentWillMount() {
     this.props.init();
   }
 
-  forgotPassword = (values) => {
+  forgotPassword(values) {
     this.props.forgotPassword(values.email.toLowerCase());
   }
 
-  changePassword = () => {
+  changePassword() {
     this.props.history.push('/changePassword');
   }
 
@@ -104,6 +96,14 @@ class ResetPassword extends Component {
     );
   }
 }
+
+ResetPassword.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  forgotPassword: PropTypes.func.isRequired,
+  auth: PropTypes.object,
+  init: PropTypes.func,
+  history: PropTypes.object,
+};
 
 // Decorate the form component
 export default reduxForm({

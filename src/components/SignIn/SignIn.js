@@ -58,14 +58,6 @@ const style = {
 };
 
 class SignIn extends Component {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    signIn: PropTypes.func.isRequired,
-    auth: PropTypes.object,
-    init: PropTypes.func,
-    history: PropTypes.object,
-  }
-
   constructor(props) {
     super(props);
 
@@ -82,7 +74,7 @@ class SignIn extends Component {
     }
   }
 
-  signIn = (values) => {
+  signIn(values) {
     if (this.props.auth.isConfirmed === state.AUTH_SUCCESS) {
       this.props.signIn(values.email, values.password);
     } else {
@@ -190,6 +182,14 @@ class SignIn extends Component {
     return this.renderSignIn();
   }
 }
+
+SignIn.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
+  auth: PropTypes.object,
+  init: PropTypes.func,
+  history: PropTypes.object,
+};
 
 // Decorate the form component
 export default reduxForm({

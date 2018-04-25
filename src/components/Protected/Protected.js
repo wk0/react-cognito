@@ -29,11 +29,7 @@ const style = {
 };
 
 class ProtectedComponent extends React.Component {
-  static propTypes = {
-    auth: PropTypes.object,
-  }
-
-  static renderAuthInfo(auth) {
+  renderAuthInfo(auth) {
     return (
       <div style={style.token}>
         <div style={style.label}>Access Token</div>
@@ -62,5 +58,9 @@ class ProtectedComponent extends React.Component {
     );
   }
 }
+
+ProtectedComponent.propTypes = {
+  auth: PropTypes.object,
+};
 
 export default ProtectedComponent;
